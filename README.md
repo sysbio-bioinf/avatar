@@ -1,3 +1,5 @@
+![Avatar Logo](images/avatar-logo.svg)
+
 # Avatar - Analysis and Visualization of Alteration Data
 
 [![License](https://img.shields.io/badge/License-EPL%202.0-blue.svg)](https://www.eclipse.org/legal/epl-v20.html)
