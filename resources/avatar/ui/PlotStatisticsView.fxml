@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox spacing="10.0">
+         <children>
+            <Label maxHeight="1.7976931348623157E308" text="Alteration Type:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ComboBox id="alteration-type-combobox" prefWidth="200.0" />
+            <Region HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label id="gene-count-label" text="200">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DNA" size="20" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="gene count" />
+                     </tooltip>
+                  </Label>
+                  <Label id="sample-count-label" text="50">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="ACCOUNT_MULTIPLE" size="23" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="sample count" />
+                     </tooltip>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
+      </HBox>
+      <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+         <items>
+            <StackPane id="plot-parent" minHeight="100.0" minWidth="100.0" />
+            <VBox>
+               <children>
+                  <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <children>
+                        <Label text="Table values:">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets right="15.0" />
+                           </padding>
+                        </Label>
+                        <RadioButton id="relative-values-radiobutton" mnemonicParsing="false" selected="true" text="relative">
+                           <padding>
+                              <Insets right="10.0" />
+                           </padding>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="tableValueModeGroup" />
+                           </toggleGroup>
+                           <tooltip>
+                              <Tooltip text="Specifies that the tables show relative values." />
+                           </tooltip>
+                        </RadioButton>
+                        <RadioButton id="absolute-values-radiobutton" mnemonicParsing="false" text="absolute" toggleGroup="$tableValueModeGroup">
+                           <tooltip>
+                              <Tooltip text="Specifies that the tables show absolute values." />
+                           </tooltip>
+                        </RadioButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TabPane id="statistics-tabpane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@tabpane.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                     <tabs>
+                        <Tab id="objectives-tab" text="Objectives">
+                           <content>
+                              <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" text="Objective:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets right="15.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox id="objective-combobox" prefWidth="200.0" />
+                                          <Label text="Genes:">
+                                             <HBox.margin>
+                                                <Insets left="50.0" right="10.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <RadioButton id="without-fixed-genes-radiobutton" mnemonicParsing="false" selected="true" text="without fixed">
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                             <toggleGroup>
+                                                <ToggleGroup fx:id="fixedGenesModeGroup" />
+                                             </toggleGroup>
+                                             <tooltip>
+                                                <Tooltip text="Calculate objectives based on the genes that are not fixed." />
+                                             </tooltip>
+                                          </RadioButton>
+                                          <RadioButton id="all-genes-radiobutton" mnemonicParsing="false" text="all" toggleGroup="$fixedGenesModeGroup">
+                                             <tooltip>
+                                                <Tooltip text="Calculate objectives based on all genes (including fixed genes)." />
+                                             </tooltip>
+                                          </RadioButton>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <TextFlow>
+                                       <children>
+                                          <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Note that coverage and overlap are calculated per gene group. The relative coverage and mean overlap are calculated relative to the sample group." />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </TextFlow>
+                                    <TableView id="objectives-table" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab id="alterations-tab" text="Alterations">
+                           <content>
+                              <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                 <children>
+                                    <TextFlow>
+                                       <children>
+                                          <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Note that the relative alteration counts are calculated relative to the sample group." />
+                                       </children>
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </TextFlow>
+                                    <TableView id="alterations-table" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                        <Tab id="clinical-attributes-tab" text="Clinical Attributes">
+                           <content>
+                              <VBox>
+                                 <children>
+                                    <HBox alignment="CENTER">
+                                       <children>
+                                          <Label maxHeight="1.7976931348623157E308" text="Clinical Attribute:">
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets right="15.0" />
+                                             </padding>
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ComboBox id="clinical-attribute-combobox" prefWidth="200.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </padding>
+                                    </HBox>
+                                    <TableView id="clinical-attribute-table" minHeight="100.0" minWidth="100.0" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+      <HBox spacing="10.0">
+         <children>
+            <MenuButton alignment="CENTER" minWidth="110.0" mnemonicParsing="false" text="Export">
+              <items>
+                <MenuItem id="export-plot-data-menu" mnemonicParsing="false" text="Plot Data" />
+                <MenuItem id="export-table-data-menu" mnemonicParsing="false" text="Table Data" />
+              </items>
+            </MenuButton>
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Button id="close-button" cancelButton="true" minWidth="110.0" mnemonicParsing="false" text="Close" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minHeight="200.0" minWidth="300.0" prefHeight="400.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ToolBar id="action-toolbar" stylesheets="@toolbar.css">
+        <items>
+          <Button id="rename-button" mnemonicParsing="false" text="Rename">
+               <graphic>
+                  <MaterialDesignIconView glyphName="PENCIL" size="16" />
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Rename selected group" />
+               </tooltip>
+            </Button>
+            <Button id="merge-button" mnemonicParsing="false" text="Merge">
+               <graphic>
+                  <MaterialDesignIconView glyphName="VECTOR_COMBINE" size="16" />
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Merge selected groups" />
+               </tooltip>
+            </Button>
+            <Button id="delete-button" mnemonicParsing="false" text="Delete">
+               <graphic>
+                  <MaterialDesignIconView glyphName="DELETE" size="16" />
+               </graphic>
+               <tooltip>
+                  <Tooltip text="Delete selected groups" />
+               </tooltip>
+            </Button>
+        </items>
+      </ToolBar>
+      <TableView id="group-tableview" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn editable="false" minWidth="450.0" prefWidth="450.0" text="Group" />
+          <TableColumn editable="false" minWidth="100.0" prefWidth="100.0" style="-fx-alignment: CENTER;" text="#Members" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+      <HBox spacing="10.0">
+         <children>
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Button id="apply-button" defaultButton="true" minHeight="26.0" minWidth="63.0" mnemonicParsing="false" text="Apply" />
+            <Button id="cancel-button" cancelButton="true" minHeight="26.0" minWidth="63.0" mnemonicParsing="false" text="Cancel" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

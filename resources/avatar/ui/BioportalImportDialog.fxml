@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.131" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Search:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <TextField id="search-textfield" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <TableView id="study-table" prefHeight="800.0" prefWidth="1180.0" VBox.vgrow="ALWAYS">
+        <columns>
+          <TableColumn maxWidth="0.0" minWidth="0.0" prefWidth="0.0" resizable="false" text="Id" visible="false" />
+          <TableColumn editable="false" minWidth="-Infinity" prefWidth="400.0" text="Study" />
+            <TableColumn editable="false" minWidth="-Infinity" prefWidth="800.0" text="Description" />
+        </columns>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </TableView>
+      <HBox spacing="10.0">
+         <children>
+            <Label id="found-study-count-label" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" text="Found studies: 0" />
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Button id="import-button" defaultButton="true" minHeight="26.0" minWidth="63.0" mnemonicParsing="false" text="Import" />
+            <Button id="cancel-button" cancelButton="true" minHeight="26.0" minWidth="63.0" mnemonicParsing="false" text="Cancel" />
+         </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

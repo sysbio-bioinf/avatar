@@ -1,0 +1,12 @@
+.tool-bar {
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-padding: 0;
+    -fx-spacing: 0;
+}
+
+.tool-bar .button {
+    -fx-background-radius: 0;
+    -fx-padding: 7 14 7 14;
+    -fx-min-width: 50;
+}

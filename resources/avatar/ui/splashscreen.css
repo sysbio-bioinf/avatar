@@ -1,0 +1,16 @@
+.progress-bar {
+
+}
+
+.progress-bar > .track{
+
+}
+
+.progress-bar > .bar { 
+    -fx-background-color: #488277;
+}
+
+.splashscreen-frame {
+-fx-border-color: black;
+-fx-border-width: 2;
+}

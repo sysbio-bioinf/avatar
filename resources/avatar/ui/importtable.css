@@ -1,0 +1,19 @@
+.my-table-header-cell {
+    -fx-background-color: -fx-box-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0, 0 1 1 0, 1 2 2 1;
+    -fx-font-weight: bold;
+    -fx-size: 2em;
+    -fx-text-fill: -fx-selection-bar-text;
+    -fx-padding: 0.166667em;
+    -fx-table-cell-border-color: -fx-box-border;
+}
+
+.my-table-header-cell * {
+    -fx-text-fill: black;
+}
+
+
+.my-table-cell {
+    -fx-border-color: #888888;
+}
+

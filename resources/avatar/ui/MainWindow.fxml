@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane id="content-pane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <bottom>
+      <HBox id="statusbar" style="-fx-border-width: 1.0; -fx-border-stroke: solid; -fx-border-color: #b6b6b6;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" spacing="10.0">
+               <children>
+                  <Label id="gene-count-label" text="200">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DNA" size="20" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="gene count" />
+                     </tooltip>
+                  </Label>
+                  <Label id="sample-count-label" text="50">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="ACCOUNT_MULTIPLE" size="23" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="sample count" />
+                     </tooltip>
+                  </Label>
+                  <Label id="shown-alteration-type-label" text="mutation data">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DATABASE" size="20" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="shown alteration data" />
+                     </tooltip>
+                  </Label>
+                  <Label id="coverage-label" text="1.0">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="VECTOR_UNION" size="20" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="relative coverage (with and without fixed genes)" />
+                     </tooltip>
+                  </Label>
+                  <Label id="overlap-label" text="2.5">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="VECTOR_INTERSECTION" size="20" textAlignment="RIGHT" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="mean overlap (with and without fixed genes)" />
+                     </tooltip>
+                  </Label>
+               </children>
+            </HBox>
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Label id="selection-label">
+               <padding>
+                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+   </bottom>
+   <center>
+      <StackPane id="plot-parent" BorderPane.alignment="CENTER" />
+   </center>
+   <top>
+      <VBox BorderPane.alignment="CENTER">
+         <children>
+          <MenuBar id="menu" VBox.vgrow="NEVER">
+            <menus>
+              <Menu id="file-menu" mnemonicParsing="false" text="File">
+                <items>
+                        <Menu mnemonicParsing="false" text="Import from file">
+                           <items>
+                        <MenuItem id="file-import-matrix" mnemonicParsing="false" text="Alteration Matrix" />
+                              <MenuItem id="file-import-table" mnemonicParsing="false" text="Alteration Table" />
+                           </items>
+                        </Menu>
+                        <MenuItem id="file-import-bioportal-study" mnemonicParsing="false" text="Import from cbioportal" />
+                        <MenuItem id="file-import-geo-dataset" mnemonicParsing="false" text="Import GEO dataset" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="file-open" mnemonicParsing="false" text="Open" />
+                  <Menu id="file-open-recent-menu" disable="true" mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />            
+                  <MenuItem id="file-save" disable="true" mnemonicParsing="false" text="Save">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                  <MenuItem id="file-save-as" disable="true" mnemonicParsing="false" text="Save As…">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem id="file-export-plot" disable="true" mnemonicParsing="false" text="Export Plot" />
+                        <MenuItem id="file-export-plot-data" disable="true" mnemonicParsing="false" text="Export Plot Data" />
+                        <MenuItem id="file-export-clinical-data" mnemonicParsing="false" text="Export Clinical Data" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem id="file-settings" disable="true" mnemonicParsing="false" text="Settings…" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem id="file-quit" mnemonicParsing="false" text="Quit" />
+                </items>
+              </Menu>
+              <Menu id="edit-menu" disable="true" mnemonicParsing="false" text="Edit">
+                <items>
+                  <MenuItem id="edit-undo" disable="true" mnemonicParsing="false" text="Undo">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Z" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                  <MenuItem id="edit-redo" disable="true" mnemonicParsing="false" text="Redo">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="Z" control="UP" meta="UP" shift="DOWN" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <Menu id="edit-insert-alteration-data-from-file-menu" disable="true" mnemonicParsing="false" text="Insert alteration data from file">
+                          <items>
+                              <MenuItem id="edit-insert-matrix-data-file" disable="true" mnemonicParsing="false" text="Alteration Matrix" />
+                            <MenuItem id="edit-insert-table-data-file" disable="true" mnemonicParsing="false" text="Alteration Table" />
+                          </items>
+                        </Menu>
+                        <MenuItem id="edit-insert-bioportal-study" disable="true" mnemonicParsing="false" text="Insert study from cbioportal" />
+                        <MenuItem id="edit-insert-geo-dataset" disable="true" mnemonicParsing="false" text="Insert GEO dataset" />
+                        <MenuItem id="edit-insert-clinical-attributes" disable="true" mnemonicParsing="false" text="Insert clinical data" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="edit-normalize-gene-names" disable="true" mnemonicParsing="false" text="Normalize gene names..." />
+                        <MenuItem id="edit-manage-clinical-data" disable="true" mnemonicParsing="false" text="Manage clinical data" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="edit-delete-genes" disable="true" mnemonicParsing="false" text="Delete genes..." />
+                        <MenuItem id="edit-delete-genes-without-alterations" disable="true" mnemonicParsing="false" text="Delete genes without alterations" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="edit-delete-samples-without-alterations" disable="true" mnemonicParsing="false" text="Delete samples without alterations" />
+                        <MenuItem id="edit-delete-samples-without-clinical-data" disable="true" mnemonicParsing="false" text="Delete samples without clinical data" />
+                </items>
+              </Menu>
+                  <Menu id="groups-menu" disable="true" mnemonicParsing="false" text="Groups">
+                     <items>
+                        <MenuItem id="groups-merge-group-alterations" disable="true" mnemonicParsing="false" text="Merge genes in group..." />
+                        <MenuItem id="groups-manage-gene-groups" disable="true" mnemonicParsing="false" text="Manage Gene Groups" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="groups-group-samples-by-clinical-attribute" disable="true" mnemonicParsing="false" text="Group Samples by Clinical Attribute..." />
+                        <MenuItem id="groups-manage-sample-groups" disable="true" mnemonicParsing="false" text="Manage Sample Groups" />
+                     </items>
+                  </Menu>
+                  <Menu id="selection-menu" disable="true" mnemonicParsing="false" text="Selection">
+                    <items>
+                        <MenuItem id="selection-select-genes" disable="true" mnemonicParsing="false" text="Select Genes...">
+                           <accelerator>
+                              <KeyCodeCombination alt="UP" code="F" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+                           </accelerator></MenuItem>
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="selection-invert-selection" disable="true" mnemonicParsing="false" text="Invert Selection" />
+                        <MenuItem id="selection-clear-selection" disable="true" mnemonicParsing="false" text="Clear Selection" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="selection-move-to-front" disable="true" mnemonicParsing="false" text="Move to Front" />
+                        <MenuItem id="selection-fix-order" disable="true" mnemonicParsing="false" text="Fix Order" />
+                        <MenuItem id="selection-unfix-order" disable="true" mnemonicParsing="false" text="Unfix Order" />
+                        <MenuItem id="selection-show-selected" disable="true" mnemonicParsing="false" text="Show Selected IDs/Names" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="selection-change-group" disable="true" mnemonicParsing="false" text="Change Group" />
+                        <MenuItem id="selection-delete-selection" disable="true" mnemonicParsing="false" text="Delete Selection" />
+                    </items>
+                  </Menu>
+                  <Menu id="view-menu" disable="true" mnemonicParsing="false" text="View">
+                     <items>
+                        <RadioMenuItem id="view-mutation-data" disable="true" mnemonicParsing="false" text="Mutation data">
+                           <toggleGroup>
+                              <ToggleGroup fx:id="viewAlterationTypeToggleGroup" />
+                           </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem id="view-expression-data" disable="true" mnemonicParsing="false" text="Expression data" toggleGroup="$viewAlterationTypeToggleGroup" />
+                        <RadioMenuItem id="view-methylation-data" disable="true" mnemonicParsing="false" text="Methylation data" toggleGroup="$viewAlterationTypeToggleGroup" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="view-plot-data-statistics" disable="true" mnemonicParsing="false" text="Plot Data Statistics" />
+                     </items>
+                  </Menu>
+                  <Menu id="sort-menu" disable="true" mnemonicParsing="false" text="Sort">
+                    <items>
+                      <MenuItem id="sort-genes" disable="true" mnemonicParsing="false" text="Genes..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="sort-genes-by-group" disable="true" mnemonicParsing="false" text="Genes by Group" />
+                        <MenuItem id="sort-genes-by-alteration-count" disable="true" mnemonicParsing="false" text="Genes by Alteration Count" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                      <MenuItem id="sort-samples" disable="true" mnemonicParsing="false" text="Samples by Group" />
+                        <MenuItem id="sort-samples-without-groups" disable="true" mnemonicParsing="false" text="Samples by Alterations" />
+                    </items>
+                  </Menu>
+                  <Menu id="optimization-menu" disable="true" mnemonicParsing="false" text="Optimization">
+                    <items>
+                      <MenuItem id="optimization-single-optimization" disable="true" mnemonicParsing="false" text="Single Optimization..." />
+                        <MenuItem id="optimization-batch-optimization" disable="true" mnemonicParsing="false" text="Batch Optimization..." />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="optimization-view-latest-gene-selections" disable="true" mnemonicParsing="false" text="View Latest Pareto Front" />
+                        <MenuItem id="optimization-view-saved-pareto-fronts" disable="true" mnemonicParsing="false" text="View Saved Pareto Fronts" />
+                        <MenuItem id="optimization-view-batch-optimization-results" disable="true" mnemonicParsing="false" text="View Batch Optimization Results" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="optimization-compare-solutions" disable="true" mnemonicParsing="false" text="Compare Solutions" />
+                    </items>
+                  </Menu>
+                  <Menu id="snapshots-menu" disable="true" mnemonicParsing="false" text="Snapshots">
+                    <items>
+                      <CheckMenuItem id="snapshots-view" mnemonicParsing="false" text="View" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem id="snapshots-save" disable="true" mnemonicParsing="false" text="Save Plot" />
+                    </items>
+                  </Menu>
+              <Menu id="help-menu" mnemonicParsing="false" text="Help">
+                <items>
+                  <MenuItem id="help-about" mnemonicParsing="false" text="About Avatar" />
+                </items>
+              </Menu>
+            </menus>
+          </MenuBar>
+            <ToolBar id="toolbar" style="-fx-padding: 0px;">
+               <items>
+                  <HBox>
+                     <children>
+                      <Button id="undo-button" disable="true" mnemonicParsing="false">
+                           <graphic>
+                              <MaterialDesignIconView glyphName="UNDO" size="16" />
+                           </graphic>
+                        </Button>
+                       <Button id="redo-button" disable="true" mnemonicParsing="false">
+                           <graphic>
+                              <MaterialDesignIconView glyphName="REDO" size="16.0" />
+                           </graphic>
+                       </Button>
+                     </children>
+                  </HBox>
+               </items>
+            </ToolBar>
+         </children>
+      </VBox>
+   </top>
+</BorderPane>

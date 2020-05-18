@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="450.0" prefWidth="875.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox spacing="10.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="General">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <GridPane hgap="10.0" style="-fx-border-width: 1; -fx-border-style: solid inside; -fx-border-color: derive(#88C6F8,-20%);" vgap="10.0" VBox.vgrow="ALWAYS">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="200.0" />
+                        <ColumnConstraints />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Objectives" GridPane.columnSpan="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Second Objective:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip maxWidth="400.0" text="This parameter specifies the second objective: either overlap or gene count." wrapText="true" />
+                           </tooltip>
+                        </Label>
+                        <ComboBox id="second-objective-combobox" maxWidth="1.7976931348623157E308" promptText="Choose Second Objective" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data to Use" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Alteration Type:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip maxWidth="400.0" text="This parameter specifies the type of alteration data that is used." wrapText="true" />
+                           </tooltip>
+                        </Label>
+                        <ComboBox id="alteration-type-combobox" maxWidth="1.7976931348623157E308" promptText="Choose Alteration Type" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sample Group:" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip maxWidth="400.0" text="This parameter specifies the samples that are used in the optimization: either all samples or a selected group of samples." wrapText="true" />
+                           </tooltip>
+                        </Label>
+                        <ComboBox id="sample-group-combobox" maxWidth="1.7976931348623157E308" promptText="Choose Sample Group" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Genes:" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip maxWidth="400.0" text="This parameter specifies which genes are include in the optimization. Only genes with at least the specified number of alterations are considered by the optimization." wrapText="true" />
+                           </tooltip>
+                        </Label>
+                        <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <children>
+                              <Label maxWidth="1.7976931348623157E308" text="Minimum ratio of alterations:" wrapText="true" />
+                              <Spinner id="minimum-alterations-spinner" editable="true" maxWidth="1.7976931348623157E308" />
+                           </children>
+                        </VBox>
+                        <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Parallelism" GridPane.columnSpan="2" GridPane.rowIndex="6">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Thread Count:" GridPane.rowIndex="7">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <tooltip>
+                              <Tooltip maxWidth="400.0" text="This parameter specifies the number of threads that are use to parallelize the optimization." wrapText="true" />
+                           </tooltip>
+                        </Label>
+                        <ComboBox id="thread-count-combobox" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="10.0" />
+                     </padding>
+                  </GridPane>
+               </children>
+            </VBox>
+            <VBox spacing="10.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Algorithm Parameters">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <TabPane id="parameters-tabpane" side="BOTTOM" stylesheets="@tabpane.css" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+                     <tabs>
+                        <Tab id="simple-tab" closable="false" text="Simple">
+                           <content>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                 <content>
+                                    <GridPane hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" vgap="10.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="230.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="160.0" />
+                                          <ColumnConstraints />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="-Infinity" prefHeight="35.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" vgrow="ALWAYS" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Initialization" GridPane.columnSpan="3">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Solution Count:" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the number of initially created random solutions. This is also the maximal number of solutions that the algorithm is allowed to use during the optimization. Too few solutions restrict the search capabilities of the algorithm strongly." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <Spinner id="solution-count-spinner" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Selected Genes Count:" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the expected number of selected genes in the randomly created solutions." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <Spinner id="selected-genes-count-spinner" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Search Step" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Swapped Genes Count:" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the expected number of swapped genes during a search step. This is the expected total number of genes that are either added to or removed from a previous solution." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <Spinner id="swapped-genes-count-spinner" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Solution Combinations Count:" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the expected number of combined solutions during a search step." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <Spinner id="solution-combinations-count-spinner" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Selection Pressure:" GridPane.rowIndex="6">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the number of solutions that compete against each other to be selected for further improvement attempts. Higher values favor the improvement of only the best solutions at the expense of less exploration of the search space." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <Spinner id="selection-pressure-spinner" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <Label alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Computation Budget" GridPane.columnSpan="3" GridPane.rowIndex="7">
+                                             <font>
+                                                <Font name="System Bold" size="15.0" />
+                                             </font>
+                                          </Label>
+                                          <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Search Step Count:" GridPane.rowIndex="8">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the number of search steps that are performed. Higher values cause longer computation durations." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <Spinner id="search-step-count-spinner" editable="true" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                       </children>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                           </content>
+                        </Tab>
+                        <Tab id="expert-tab" closable="false" text="Expert">
+                           <content>
+                              <ScrollPane fitToHeight="true" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                 <content>
+                                    <GridPane hgap="10.0" vgap="10.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="210.0" />
+                                          <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="220.0" prefWidth="220.0" />
+                                          <ColumnConstraints />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="25.0" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" valignment="TOP" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Algorithm:">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the algorithm that is used to solve the multi-objective optimization problem." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <ComboBox id="algorithm-combobox" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" />
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Population Size:" GridPane.rowIndex="1">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the number of initially created random solutions. This is also the maximal number of solutions that the algorithm is allowed to use during the optimization. Too few solutions restrict the search capabilities of the algorithm strongly." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                             <children>
+                                                <TextField id="population-size-textfield" alignment="CENTER_RIGHT" />
+                                                <Label id="population-size-error-label" maxWidth="1.7976931348623157E308" textFill="RED">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Iteration Count:" GridPane.rowIndex="2">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the number of iterations (generations) performed by the algorithm." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <VBox GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                             <children>
+                                                <TextField id="iteration-count-textfield" alignment="CENTER_RIGHT" />
+                                                <Label id="iteration-count-error-label" maxWidth="1.7976931348623157E308" textFill="RED">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Gene Selection Probability:" GridPane.rowIndex="3">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the probability to select a gene for an initial solution (opposed to excluding the gene from the initial solution)." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <VBox GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                             <children>
+                                                <TextField id="gene-selection-probability-textfield" alignment="CENTER_RIGHT" />
+                                                <Label id="gene-selection-probability-error-label" maxWidth="1.7976931348623157E308" textFill="RED">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Mutation Probability:" GridPane.rowIndex="4">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the probability to include a previously excluded gene into the solution or the remove an included gene from a solution." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <VBox GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                             <children>
+                                                <TextField id="mutation-probability-textfield" alignment="CENTER_RIGHT" />
+                                                <Label id="mutation-probability-error-label" maxWidth="1.7976931348623157E308" textFill="RED">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Crossover Probability:" GridPane.rowIndex="5">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the probability whether the crossover operator is applied to a pair of solutions." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <VBox GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                             <children>
+                                                <TextField id="crossover-probability-textfield" alignment="CENTER_RIGHT" />
+                                                <Label id="crossover-probability-error-label" maxWidth="1.7976931348623157E308" textFill="RED">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                          <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" prefHeight="25.0" text="Tournament Size:" GridPane.rowIndex="6">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                             <tooltip>
+                                                <Tooltip maxWidth="400.0" text="This parameter specifies the number of solutions that compete against each other to be selected for further improvement attempts. Higher values favor the improvement of only the best solutions at the expense of less exploration of the search space." wrapText="true" />
+                                             </tooltip>
+                                          </Label>
+                                          <VBox GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                             <children>
+                                                <TextField id="tournament-size-textfield" alignment="CENTER_RIGHT" />
+                                                <Label id="tournament-size-error-label" maxWidth="1.7976931348623157E308" textFill="RED">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                       <padding>
+                                          <Insets left="10.0" top="10.0" />
+                                       </padding>
+                                    </GridPane>
+                                 </content>
+                              </ScrollPane>
+                           </content>
+                        </Tab>
+                     </tabs>
+                  </TabPane>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <HBox id="import-button-hbox">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <children>
+                  <Button id="start-button" defaultButton="true" mnemonicParsing="false" text="Start" />
+               </children>
+            </HBox>
+            <Button id="cancel-button" mnemonicParsing="false" text="Cancel" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

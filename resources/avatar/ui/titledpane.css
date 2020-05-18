@@ -1,0 +1,17 @@
+.titled-pane > .title {
+    -fx-base: #BFBFBF;
+}
+
+.titled-pane:hover > .title 
+{
+    -fx-color: #C7C7C7;
+}
+
+.titled-pane:collapsed > .title {
+    -fx-base: #E6E6E6;
+}
+
+.titled-pane:collapsed:hover > .title 
+{
+    -fx-color: #EDEDED;
+}

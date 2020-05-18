@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="600.0" prefWidth="1000.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <ToolBar minWidth="360.0" stylesheets="@toolbar.css">
+              <items>
+                <Button id="add-gene-button" alignment="CENTER" mnemonicParsing="false" style="-fx-min-width: 120;" text="Gene">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="PLUS_CIRCLE_OUTLINE" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="add-gene-list-button" alignment="CENTER" mnemonicParsing="false" style="-fx-min-width: 120;" text="Gene List">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="PLUS_CIRCLE_OUTLINE" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="clear-button" alignment="CENTER" mnemonicParsing="false" style="-fx-min-width: 120;" text="Clear List">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="MINUS_CIRCLE_OUTLINE" size="16" />
+                     </graphic>
+                  </Button>
+              </items>
+            </ToolBar>
+            <Label id="selected-label" maxHeight="1.7976931348623157E308" prefWidth="160.0" text="0 genes selected">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <Label maxHeight="1.7976931348623157E308" text="Shown Alterations:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <ComboBox id="alteration-type-combobox" prefWidth="200.0" />
+         </children>
+      </HBox>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="150.0" minWidth="600.0" VBox.vgrow="ALWAYS">
+         <children>
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="26.0" text="Selection Plot">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+                  <StackPane id="plot-parent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <Button id="remove-genes-button" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefWidth="150.0">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="MINUS" size="16" />
+                     </graphic>
+                  </Button>
+                  <ListView id="selection-listview" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox minWidth="600.0">
+         <children>
+            <ToolBar maxWidth="1.7976931348623157E308" minWidth="720.0" stylesheets="@toolbar.css">
+               <items>
+                  <Button id="set-group-button" mnemonicParsing="false" style="-fx-min-width: 120;" text="Set Group">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="PENCIL" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="move-top-button" mnemonicParsing="false" style="-fx-min-width: 120;" text="Move Top">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="ARROW_UP" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="fix-button" mnemonicParsing="false" style="-fx-min-width: 120;" text="Fix">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="LOCK_OUTLINE" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="filter-button" mnemonicParsing="false" style="-fx-min-width: 120;" text="Filter">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="FILTER_OUTLINE" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="remove-button" mnemonicParsing="false" style="-fx-min-width: 120;" text="Remove">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DELETE" size="16" />
+                     </graphic>
+                  </Button>
+                  <Button id="select-button" mnemonicParsing="false" style="-fx-min-width: 120;" text="Select">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="SELECT" size="16" />
+                     </graphic>
+                  </Button>
+               </items>
+            </ToolBar>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button id="close-button" cancelButton="true" minWidth="120.0" mnemonicParsing="false" text="Close">
+               <padding>
+                  <Insets bottom="7.0" top="7.0" />
+               </padding></Button>
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

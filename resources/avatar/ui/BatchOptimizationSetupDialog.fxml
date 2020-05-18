@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" spacing="10.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane hgap="10.0" style="-fx-border-width: 1; -fx-border-style: solid inside; -fx-border-color: derive(#88C6F8,-20%);" vgap="20.0" VBox.vgrow="ALWAYS">
+         <columnConstraints>
+            <ColumnConstraints hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="140.0" />
+            <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="200.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" vgrow="ALWAYS" />
+            <RowConstraints />
+         </rowConstraints>
+         <children>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Second Objective:" GridPane.rowIndex="1">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip maxWidth="400.0" text="This parameter specifies the second objective: either overlap or gene count." wrapText="true" />
+               </tooltip>
+            </Label>
+            <ComboBox id="second-objective-combobox" maxWidth="1.7976931348623157E308" promptText="Choose Second Objective" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Alteration Type:">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip maxWidth="400.0" text="This parameter specifies the type of alteration data that is used." wrapText="true" />
+               </tooltip>
+            </Label>
+            <ComboBox id="alteration-type-combobox" maxWidth="1.7976931348623157E308" promptText="Choose Alteration Type" GridPane.columnIndex="1" />
+            <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sample Groups:" GridPane.rowIndex="3">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip maxWidth="400.0" text="This parameter specifies the samples that are used in the optimization: all samples and selected groups of samples." wrapText="true" />
+               </tooltip>
+            </Label>
+            <Label alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Data:" GridPane.rowIndex="2">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip maxWidth="400.0" text="This parameter specifies the second objective: either overlap or gene count." wrapText="true" />
+               </tooltip>
+            </Label>
+            <TableView id="snapshot-tableview" editable="true" prefHeight="100.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS">
+              <columns>
+                <TableColumn maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                <TableColumn editable="false" minWidth="380.0" prefWidth="380.0" text="Snapshot" />
+              </columns>
+            </TableView>
+            <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" GridPane.vgrow="ALWAYS">
+               <children>
+                  <CheckBox id="all-samples-checkbox" mnemonicParsing="false" text="Optimization on all Samples" />
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Optimization on selected sample groups:" />
+                  <TableView id="sample-group-tableview" editable="true" prefHeight="100.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                      <TableColumn editable="false" minWidth="190.0" prefWidth="-1.0" text="Sample Group" />
+                        <TableColumn editable="false" minWidth="190.0" prefWidth="-1.0" text="Source" />
+                    </columns>
+                  </TableView>
+                  <CheckBox id="select-all-groups-checkbox" mnemonicParsing="false" text="Select all groups" />
+               </children>
+            </VBox>
+            <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Genes:" GridPane.rowIndex="4">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+               <tooltip>
+                  <Tooltip maxWidth="400.0" text="This parameter specifies which genes are include in the optimization. Only genes with at least the specified number of alterations are considered by the optimization." wrapText="true" />
+               </tooltip>
+            </Label>
+            <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <children>
+                  <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Minimum ratio of alterations:" wrapText="true" />
+                  <Spinner id="minimum-alterations-spinner" editable="true" maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </GridPane>
+      <TextFlow>
+         <children>
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="The chosen setup results in " />
+            <Text id="optimization-count-text" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
+            <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text=" optimization runs." />
+         </children>
+      </TextFlow>
+      <HBox>
+         <children>
+            <Region maxWidth="1.7976931348623157E308" HBox.hgrow="ALWAYS" />
+            <HBox id="import-button-hbox">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <children>
+                  <Button id="apply-button" defaultButton="true" mnemonicParsing="false" text="Apply" />
+               </children>
+            </HBox>
+            <Button id="cancel-button" mnemonicParsing="false" text="Cancel" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+   </padding>
+</VBox>

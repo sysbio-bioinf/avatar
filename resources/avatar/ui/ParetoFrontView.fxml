@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.ScatterChart?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ToolBar id="toolbar" style="-fx-padding: 0px;">
+         <items>
+            <HBox>
+               <children>
+                  <Button id="save-pareto-front-button" mnemonicParsing="false">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="FLOPPY" size="18" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Save pareto front" />
+                     </tooltip>
+                  </Button>
+                  <Button id="previous-button" mnemonicParsing="false">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="ARROW_LEFT_BOLD_CIRCLE_OUTLINE" size="18" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Show previous solution" />
+                     </tooltip>
+                  </Button>
+                  <Button id="next-button" mnemonicParsing="false">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="ARROW_RIGHT_BOLD_CIRCLE_OUTLINE" size="18" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Show next solution" />
+                     </tooltip>
+                  </Button>
+                  <Button id="save-snapshot-button" mnemonicParsing="false">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="CAMERA" size="18" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Save current solution as snapshot" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </HBox>
+         </items>
+      </ToolBar>
+      <SplitPane id="splitpane" dividerPositions="0.33" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+         <items>
+            <VBox maxHeight="1.7976931348623157E308">
+               <children>
+                  <TextFlow textAlignment="CENTER">
+                     <children>
+                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="Selection for ">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text id="sample-group-text" fill="#090ceb" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="All Samples">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font></Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextFlow>
+                  <TextFlow textAlignment="CENTER">
+                     <children>
+                        <Text fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="using ">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text id="alteration-type-text" fill="#14a800" fontSmoothingType="LCD" strokeType="OUTSIDE" strokeWidth="0.0" text="mutation data">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </TextFlow>
+                  <HBox alignment="CENTER" spacing="20.0">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label id="solutions-label" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Solutions: 42">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label id="hypervolume-label" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Hypervolume: 0.9">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ScatterChart id="objectives-chart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+                    <xAxis>
+                      <NumberAxis side="BOTTOM" />
+                    </xAxis>
+                    <yAxis>
+                      <NumberAxis side="LEFT" />
+                    </yAxis>
+                  </ScatterChart>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" VBox.vgrow="NEVER">
+                     <children>
+                        <CheckBox id="truncation-checkbox" mnemonicParsing="false" text="truncation">
+                           <tooltip>
+                              <Tooltip text="Enable to limit the number of solutions by truncation of the coverage values. The solutions with best second objective are kept for each truncated coverage value." />
+                           </tooltip>
+                        </CheckBox>
+                        <Slider id="precision-slider" blockIncrement="1.0" disable="true" majorTickUnit="1.0" max="4.0" min="1.0" minorTickCount="0" showTickLabels="true" snapToTicks="true" value="2.0">
+                           <tooltip>
+                              <Tooltip text="Select the number of digits to keep after truncation of the coverage values." />
+                           </tooltip>
+                        </Slider>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox maxHeight="1.7976931348623157E308" prefHeight="1000.0" prefWidth="100.0">
+               <children>
+                  <HBox id="solution-info" alignment="CENTER" prefWidth="200.0" spacing="10.0">
+                     <children>
+                        <Label id="coverage-label" text="110 (1.0)">
+                           <graphic>
+                              <MaterialDesignIconView glyphName="VECTOR_UNION" size="20" textAlignment="RIGHT" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="absolute coverage (relative coverage)" />
+                           </tooltip>
+                        </Label>
+                        <Label id="overlap-label" text="253 (1.3)">
+                           <graphic>
+                              <MaterialDesignIconView glyphName="VECTOR_INTERSECTION" size="20" textAlignment="RIGHT" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="overlap (mean overlap)" />
+                           </tooltip>
+                        </Label>
+                        <Label id="gene-count-label" text="200">
+                           <graphic>
+                              <MaterialDesignIconView glyphName="DNA" size="20" textAlignment="RIGHT" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="gene count" />
+                           </tooltip>
+                        </Label>
+                        <Label id="shown-alteration-type-label" text="mutation data">
+                           <graphic>
+                              <MaterialDesignIconView glyphName="DATABASE" size="20" textAlignment="RIGHT" />
+                           </graphic>
+                           <tooltip>
+                              <Tooltip text="shown alteration data" />
+                           </tooltip>
+                        </Label>
+                        <Label id="solution-index-label" alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="(Solution 1/42)" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="3.0" right="3.0" />
+                     </padding>
+                  </HBox>
+                  <StackPane id="plot-parent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" minWidth="100.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </items>
+      </SplitPane>
+      <Accordion id="settings-parameters-accordion" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" prefHeight="175.0" stylesheets="@titledpane.css">
+         <panes>
+            <TitledPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Sort Settings">
+               <content>
+                  <HBox>
+                     <children>
+                        <GridPane hgap="10.0" maxHeight="110.0" HBox.hgrow="ALWAYS">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="225.0" prefWidth="350.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="200.0" prefWidth="200.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="180.0" prefWidth="180.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="160.0" prefWidth="160.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="180.0" prefWidth="300.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Label alignment="TOP_LEFT" text="Importance:">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <VBox GridPane.rowIndex="1" GridPane.rowSpan="2">
+                                 <children>
+                                    <Slider id="weighting-slider" blockIncrement="0.1" majorTickUnit="0.1" max="1.0" minorTickCount="10" prefHeight="38.0" prefWidth="300.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" style="-fx-tick-label-font-weight: normal;" value="0.5">
+                                       <padding>
+                                          <Insets top="10.0" />
+                                       </padding>
+                                    </Slider>
+                                    <HBox alignment="TOP_CENTER" spacing="3.0">
+                                       <children>
+                                          <Label id="importance-info-label" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Overlap: 50%  -  Coverage:" />
+                                          <TextField id="coverage-textfield" prefColumnCount="3">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </TextField>
+                                          <Label maxHeight="1.7976931348623157E308" text="\%" />
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                              <Label text="Overlap:" GridPane.columnIndex="1">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <HBox alignment="CENTER" spacing="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <RadioButton id="overlap-minimize-radiobutton" mnemonicParsing="false" selected="true" text="minimize" />
+                                    <RadioButton id="overlap-maximize-radiobutton" mnemonicParsing="false" text="maximize" />
+                                 </children>
+                              </HBox>
+                              <Label text="Groups:" GridPane.columnIndex="2">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox id="sort-by-group-checkbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="sort by gene groups" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <CheckBox id="sort-by-sample-group-checkbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="sort by sample groups" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label text="Fixed Genes:" GridPane.columnIndex="3">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <CheckBox id="exclude-fixed-genes-checkbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" selected="true" text="ignore alterations" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                              <Label text="Sample Group to sort:" GridPane.columnIndex="4">
+                                 <font>
+                                    <Font name="System Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <ComboBox id="sort-only-group-combobox" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                 <tooltip>
+                                    <Tooltip text="Only the alterations of the samples in the selected sample group are considered for sorting." />
+                                 </tooltip>
+                              </ComboBox>
+                           </children>
+                        </GridPane>
+                        <Region prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </content>
+            </TitledPane>
+            <TitledPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Used Optimization Parameters">
+               <content>
+                  <TableView id="parameters-table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                     <columns>
+                        <TableColumn editable="false" minWidth="300.0" prefWidth="300.0" style="-fx-font-weight: normal;" text="Parameter" />
+                        <TableColumn minWidth="300.0" prefWidth="300.0" style="-fx-font-weight: normal;" text="Value" />
+                     </columns>
+                  </TableView>
+               </content>
+            </TitledPane>
+         </panes>
+      </Accordion>
+   </children>
+</VBox>

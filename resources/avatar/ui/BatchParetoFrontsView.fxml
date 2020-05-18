@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.152" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ToolBar id="toolbar" style="-fx-padding: 0px;">
+         <items>
+            <HBox>
+               <children>
+                  <Button id="view-pareto-front-button" mnemonicParsing="false">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="EYE" size="18" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Show selected pareto front" />
+                     </tooltip>
+                  </Button>
+                  <Button id="delete-pareto-front-button" mnemonicParsing="false">
+                     <graphic>
+                        <MaterialDesignIconView glyphName="DELETE" size="18" />
+                     </graphic>
+                     <tooltip>
+                        <Tooltip text="Delete selected pareto front" />
+                     </tooltip>
+                  </Button>
+               </children>
+            </HBox>
+         </items>
+      </ToolBar>
+      <TableView id="pareto-front-table" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn minWidth="100.0" prefWidth="150.0" text="Batch" />
+          <TableColumn editable="false" minWidth="200.0" prefWidth="200.0" text="Snapshot" />
+          <TableColumn editable="false" minWidth="150.0" prefWidth="150.0" text="Alteration Type" />
+            <TableColumn editable="false" minWidth="150.0" prefWidth="150.0" text="Second Objective" />
+            <TableColumn maxWidth="150.0" minWidth="75.0" prefWidth="75.0" text="Min. Alt." />
+            <TableColumn editable="false" minWidth="200.0" prefWidth="200.0" text="Sample Group" />
+            <TableColumn editable="false" minWidth="150.0" prefWidth="150.0" text="Hypervolume" />
+        </columns>
+      </TableView>
+   </children>
+</VBox>
