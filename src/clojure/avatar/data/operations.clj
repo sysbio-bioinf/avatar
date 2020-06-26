@@ -647,7 +647,7 @@
         additional-missing-values (into (im/dense-int-set)
                                     (map index-mapping)
                                     (:missing-values additional-alteration-map))
-        total-sample-count (+ current-sample-count additional-sample-count)]
+        total-sample-count (- (+ current-sample-count additional-sample-count) (count duplicates))]
     {:alterations (or
                     (if additional-alteration-map
                       (if current-alteration-map

@@ -95,7 +95,7 @@
       (throw error)
 
       (= status 200)
-      (let [lines (str/split-lines (str/trim body))]
+      (let [lines (str/split-lines (u/trim-space body))]
         (if (every? #(re-matches #"[^\t]+\t[^\t\n]*?" %) lines)
           (let [symbol->synonyms-map (create-symbol->synonyms-map lines)]
             {:symbol->synonyms symbol->synonyms-map,

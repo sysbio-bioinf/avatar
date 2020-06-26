@@ -123,7 +123,7 @@
     :as settings}
    row-index
    coverage]
-  (let [coverage-text (if (Double/isNaN coverage) "N/A" (format "%.1f%%" coverage))]
+  (let [coverage-text (if (or (nil? coverage) (Double/isNaN coverage)) "N/A" (format "%.1f%%" coverage))]
     (svg/centered-text-in-rect doc
       coverage-column-x
       (+ coverage-column-y (* row-index content-row-height))
@@ -217,7 +217,7 @@
     (+ first-objective-cell-y (* row-index content-row-height))
     solution-column-width
     content-row-height
-    :end
+    :middle
     objective-value-font
     text-margin
     (lo/shorten-text-to-visible-width objective-value, objective-value-font, (- solution-column-width (* 2 text-margin)))))
@@ -226,12 +226,13 @@
 (defn render-objective-row
   [doc
    layout
-   {{:keys [selected-alteration-type] :as settings} :settings
+   {{:keys [selected-alteration-type, selected-snapshot] :as settings} :settings
     :keys [selected-solutions, column-order]
     :as table-config}
    row-index
    objective-row]
-  (let [{:keys [objective-text] :as id->objective} (gd/objective-in-solution selected-alteration-type, selected-solutions, objective-row)]
+  (let [{:keys [objective-text] :as id->objective}
+        (gd/objective-in-snapshot selected-alteration-type, selected-snapshot, selected-solutions, objective-row)]
     (->> column-order
       (u/reduce-indexed
         (fn [cell-vec, column-index, solution-id]

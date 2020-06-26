@@ -13,7 +13,7 @@
 
 (def snapshot? false)
 
-(def version [0 4 10])
+(def version [0 4 11])
 
 
 (defn current-version

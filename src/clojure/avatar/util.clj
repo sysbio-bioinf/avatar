@@ -1047,3 +1047,21 @@
 (defn current-year
   []
   (.getYear (ZonedDateTime/now (ZoneId/systemDefault))))
+
+
+;; based on clojure.string/trim but limited to space characters (licensed under EPL-1.0)
+(defn trim-space
+  "Removes space from both ends of string."
+  ^String [^CharSequence s]
+  (let [len (.length s)]
+    (loop [rindex len]
+      (if (zero? rindex)
+        ""
+        (if (Character/isSpaceChar (.charAt s (dec rindex)))
+          (recur (dec rindex))
+          ;; there is at least one non-whitespace char in the string,
+          ;; so no need to check for lindex reaching len.
+          (loop [lindex 0]
+            (if (Character/isSpaceChar (.charAt s lindex))
+              (recur (inc lindex))
+              (-> s (.subSequence lindex rindex) .toString))))))))

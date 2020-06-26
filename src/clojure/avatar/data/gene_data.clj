@@ -129,14 +129,16 @@
   "Create a new bitset where the alterations of the samples are shifted according to the given renaming map.
   Alterations of samples that do not occur in the renaming map are discarded."
   [alteration-set, sample-renaming-vec]
-  (persistent!
-    (reduce
-      (fn [result-bitset, old-sample-index]
-        (if-let [new-sample-index (nth sample-renaming-vec old-sample-index)]
-          (conj! result-bitset new-sample-index)
-          result-bitset))
-      (transient (im/dense-int-set))
-      alteration-set)))
+  (let [sample-count (count sample-renaming-vec)]
+    (persistent!
+      (reduce
+        (fn [result-bitset, old-sample-index]
+          (if-let [new-sample-index (when (< old-sample-index sample-count)
+                                      (nth sample-renaming-vec old-sample-index))]
+            (conj! result-bitset new-sample-index)
+            result-bitset))
+        (transient (im/dense-int-set))
+        alteration-set))))
 
 
 (defn delete-alterations
@@ -264,6 +266,21 @@
         (fn [result-vec, index, gene]
           (cond-> result-vec
             (contains? gene-search-set gene)
+            (conj! index)))
+        (transient [])
+        gene-list))))
+
+
+(defn find-gene-indices-by-gene-id
+  [gene-list, gene-id-search-set]
+  (let [gene-id-search-set (if (set? gene-id-search-set)
+                               gene-id-search-set
+                               (set gene-id-search-set))]
+    (persistent!
+      (u/reduce-indexed
+        (fn [result-vec, index, gene]
+          (cond-> result-vec
+            (contains? gene-id-search-set (:gene-id gene))
             (conj! index)))
         (transient [])
         gene-list))))
@@ -422,14 +439,15 @@
       (u/key-value-map :gene (constantly Double/NaN) gene-list))))
 
 
-
 (defn objective-text
   [{:keys [objective, samples]}]
   (format "%s (%s)"
     (-> objective name str/capitalize)
-    (case samples
-      :optimization-group "group"
-      :all "all")))
+    (cond
+      (= samples :all) "all"
+      (= samples :optimization-group) "optim. group"
+      :else samples)))
+
 
 (defn objective-in-solution
   [selected-alteration-type, solutions, {:keys [objective, samples] :as objective-spec}]
@@ -442,11 +460,73 @@
                                   (partial mean-overlap selected-alteration-type)))]
     (persistent!
       (reduce
-        (fn [row-map, {:keys [id, gene-sample-data, optimization-sample-group] :as solution}]
+        (fn [row-map, {:keys [id, gene-sample-data, optimization-sample-group, type] :as solution}]
           (let [objective-value (if (contains? (:alteration-type-set gene-sample-data) selected-alteration-type)
-                                  (objective-fn
-                                    (when (= samples :optimization-group) optimization-sample-group)
-                                    gene-sample-data)
+                                  (cond
+                                    (= samples :all)
+                                    (objective-fn nil, gene-sample-data)
+
+                                    (= samples :optimization-group)
+                                    (if (= type :solution-item)
+                                      (objective-fn optimization-sample-group, gene-sample-data)
+                                      "N/A")
+
+                                    :else
+                                    (objective-fn samples, gene-sample-data))
+                                  ; snapshot does not contain the requested altertation type
+                                  "N/A")]
+            (assoc! row-map id objective-value)))
+        (transient
+          {:objective-text (objective-text objective-spec)})
+        solutions))))
+
+
+(defn objective-in-snapshot
+  [selected-alteration-type
+   selected-snapshot
+   solutions
+   {:keys [objective, samples] :as objective-spec}]
+  (let [objective-fn (case objective
+                       :coverage (comp
+                                   #(some->> % (* 100.0) (format "%.1f%%"))
+                                   (partial relative-coverage selected-alteration-type))
+                       :overlap (comp
+                                  #(some->> % (format "%.2f"))
+                                  (partial mean-overlap selected-alteration-type)))
+        sample-group-set (-> selected-snapshot
+                           (get-in [:data, :sample-group-map])
+                           vals
+                           set)]
+    (persistent!
+      (reduce
+        (fn [row-map, {:keys [id, optimization-sample-group, type]
+                       {solution-gene-list :gene-list} :gene-sample-data
+                       :as solution}]
+          (let [solution-gene-indices (find-gene-indices-by-gene-id
+                                        (get-in selected-snapshot [:data, :gene-list])
+                                        (into #{} (map :gene-id) solution-gene-list))
+                filtered-snapshot-gene-sample-data (update (:data selected-snapshot)
+                                                     :gene-list
+                                                     (partial u/filter-by-index solution-gene-indices))
+                objective-value (if (contains? (:alteration-type-set filtered-snapshot-gene-sample-data) selected-alteration-type)
+                                  (cond
+                                    (= samples :all)
+                                    (objective-fn nil, filtered-snapshot-gene-sample-data)
+
+                                    (= samples :optimization-group)
+                                    (if (and
+                                          (= type :solution-item)
+                                          (or
+                                            (nil? optimization-sample-group)
+                                            (contains? sample-group-set optimization-sample-group)))
+                                      (objective-fn optimization-sample-group, filtered-snapshot-gene-sample-data)
+                                      "N/A")
+
+                                    :else
+                                    (if (contains? sample-group-set samples)
+                                      (objective-fn samples, filtered-snapshot-gene-sample-data)
+                                      "N/A"))
+                                  ; snapshot does not contain the requested altertation type
                                   "N/A")]
             (assoc! row-map id objective-value)))
         (transient

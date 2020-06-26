@@ -52,7 +52,7 @@
 
 (defn split
   [line, separator, quotation]
-  (let [line (str/trim line),
+  (let [line (u/trim-space line),
         n (count line)]
     (loop [i 0, quoted? false, cell (StringBuilder.) result (transient [])]
       (if (< i n)

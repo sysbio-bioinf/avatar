@@ -27,21 +27,21 @@
                  [org.uma.jmetal/jmetal-core "5.3"
                   :exclusions [org.knowm.xchart/xchart]]
                  [org.uma.jmetal/jmetal-algorithm "5.3"]
-                 [clj-jfx "0.1.24"]
+                 [clj-jfx "0.1.25"]
                  [clj-http "3.9.1"]
                  [org.clojure/data.json "0.2.6"]
                  [com.climate/claypoole "1.1.4"]
                  ; SVG
                  [xerces/xerces "2.4.0"]
-                 [org.apache.xmlgraphics/batik-transcoder "1.10"
+                 [org.apache.xmlgraphics/batik-transcoder "1.13"
                   :exclusions [xerces/xercesImpl
                                org.python/jython
                                org.mozilla/rhino]]
-                 [org.apache.xmlgraphics/batik-codec "1.10"]
-                 [org.apache.xmlgraphics/batik-anim "1.10"]
-                 [org.apache.xmlgraphics/batik-svggen "1.10"] ; to convert fonts
-                 [org.apache.xmlgraphics/xmlgraphics-commons "2.3"]
-                 [org.apache.xmlgraphics/fop "2.3" :exclusions [commons-logging]]
+                 [org.apache.xmlgraphics/batik-codec "1.13"]
+                 [org.apache.xmlgraphics/batik-anim "1.13"]
+                 [org.apache.xmlgraphics/batik-svggen "1.13"] ; to convert fonts
+                 [org.apache.xmlgraphics/xmlgraphics-commons "2.4"]
+                 [org.apache.xmlgraphics/fop "2.5" :exclusions [commons-logging]]
                  ; decompress tar archives
                  [org.apache.commons/commons-compress "1.13"]
                  [commons-io "2.4"]
@@ -49,8 +49,8 @@
                  [prismatic/schema "1.1.7"]]
 
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.2.11"]
-                                  [org.clojure/test.check "0.9.0"]
-                                  [com.gfredericks/test.chuck "0.2.7"]
+                                  [org.clojure/test.check "1.0.0"]
+                                  [com.gfredericks/test.chuck "0.2.10"]
                                   [clj-debug "0.7.6"]
                                   [criterium "0.4.4"]
                                   [org.apache.xmlgraphics/batik-swing "1.10"] ; only for swing canvas

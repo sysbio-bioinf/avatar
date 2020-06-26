@@ -159,6 +159,7 @@
     (props/bind (props/property cell, :background) background-prop)
     (props/bind (props/property cell, :text), text-prop)
     (props/bind (props/property cell, :font), font-prop)
+    (jfx/alignment! cell, :center)
     cell))
 
 
@@ -299,7 +300,8 @@
         objective-rows (mapv
                          (fn [objective-row]
                            (let [{:keys [objective-text]
-                                  :as objectives-per-solution} (gd/objective-in-solution selected-alteration-type, new-selected-solutions, objective-row)]
+                                  :as objectives-per-solution}
+                                 (gd/objective-in-snapshot selected-alteration-type, selected-snapshot, new-selected-solutions, objective-row)]
                              (-> objectives-per-solution
                                (dissoc :objective-text)
                                (assoc
@@ -660,6 +662,14 @@
   (let [{:keys [measure-row-table
                 add-measure-row-button
                 remove-measure-row-button]} children
+        sample-groups-prop (props/fn-property
+                             (fn [selected-snapshot]
+                               (into [:all, :optimization-group]
+                                 (some->> (get-in selected-snapshot [:data, :sample-group-map])
+                                   vals
+                                   distinct
+                                   sort)))
+                             (props/entry-property dialog-state, [:settings, :selected-snapshot]))
         _ (table/setup-table measure-row-table,
             [{:name "Measure"
               :attribute :objective
@@ -667,18 +677,24 @@
                               (table/combobox-cell
                                 (props/create-property [:coverage, :overlap])
                                 #(-> % name str/capitalize)
-                                "Select an objective"))}
+                                "Select an objective"))
+              :sortable? false
+              :reorderable? false}
              {:name "Samples"
               :attribute :samples
               :cell-factory (fn [_]
                               (table/combobox-cell
-                                (props/create-property [:optimization-group, :all])
-                                #(case %
-                                   :optimization-group "Optimization Group"
-                                   :all "All")
-                                "Select a sample group"))}]
+                                sample-groups-prop
+                                #(cond
+                                   (= % :all) "All Samples"
+                                   (= % :optimization-group) "Optimization Group"
+                                   :else (str %))
+                                "Select a sample group"))
+              :sortable? false
+              :reorderable? false}]
             {:placeholder "No measure rows added."})
-        rows-prop (table/rows-property measure-row-table)]
+        rows-prop (table/rows-property measure-row-table)
+        selected-snapshot-prop (props/entry-property dialog-state [:settings, :selected-snapshot])]
 
     (props/bind (props/entry-property dialog-state, [:settings, :objective-rows])
       (props/fn-property
@@ -686,15 +702,26 @@
           (filterv (fn [{:keys [objective, samples]}] (and objective samples)) rows))
         rows-prop))
 
+    ; when no snapshot is selected, clear objective rows
+    (props/listen-to
+      (fn [_, [selected-snapshot]]
+        (when (= selected-snapshot :coverage-snapshot/none)
+          (props/swap rows-prop (constantly []))))
+      selected-snapshot-prop)
+
+    ; add objective row is disabled, when no alteration type or no snapshot is selected
     (props/bind (props/property add-measure-row-button, :disable)
-      (props/fn-property nil?
-        (props/entry-property dialog-state, [:settings, :selected-alteration-type])))
+      (props/fn-property
+        (fn [selected-alteration-type, selected-snapshot]
+          (or (nil? selected-alteration-type) (= selected-snapshot :coverage-snapshot/none)))
+        (props/entry-property dialog-state, [:settings, :selected-alteration-type])
+        selected-snapshot-prop))
 
     (jfx/handle-event! add-measure-row-button, :action
       (fn [_]
         (props/swap rows-prop conj {:objective nil, :samples nil})))
 
-
+    ; remove objective row is disabled, when there are no rows
     (props/bind (props/property remove-measure-row-button, :disable)
       (props/fn-property empty?, rows-prop))
 
@@ -807,17 +834,17 @@
           default-italic-font (assoc default-font :posture :italic)
           dialog-state-atom (atom
                               {:tree (solution-selection-tree-data ui)
-                               :settings {:rotate-column-captions? true,
-                                          :solution-column-width 50
+                               :settings {:rotate-column-captions? false,
+                                          :solution-column-width 100
                                           :row-height 25
-                                          :header-height 100
+                                          :header-height 40
                                           :snapshots (dm/snapshots (:data-management ui))
                                           :solutions {}
                                           :gene-column-label "Gene"
                                           :gene-column-label-font default-bold-font
-                                          :gene-column-width 100
+                                          :gene-column-width 150
                                           :gene-font default-italic-font
-                                          :coverage-column-width 50
+                                          :coverage-column-width 80
                                           :coverage-label "Coverage"
                                           :coverage-label-font default-bold-font
                                           :coverage-value-font default-font
@@ -862,7 +889,7 @@
         [{:name "Genes"
           :id :genes-column
           :attribute :gene-name
-          :width 100
+          :width 150
           :sortable? false
           :reorderable? false
           :cell-factory (partial gene-column-cell-factoy settings-map-prop (table/rows-property comparison-table))}])
