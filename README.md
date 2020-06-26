@@ -22,14 +22,14 @@ e.g. gene sets with mutually exclusive alterations or small gene sets with high 
 
 Download the binaries for your operating system below:
 
-* [Windows](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.10/avatar-0.4.10-windows.zip)
-* [Linux](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.10/avatar-0.4.10-linux.tar.gz)
-* [Mac OS X](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.10/avatar-0.4.10.dmg)
+* [Windows](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.11/avatar-0.4.11-windows.zip)
+* [Linux](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.11/avatar-0.4.11-linux.tar.gz)
+* [Mac OS X](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.11/avatar-0.4.11.dmg)
 
 For Windows and Linux extract the files from the archive and run the `avatar` binary.
 For Mac OS X double click the dmg image and then open the avatar volume from your desktop to run the `avatar` binary.
 
-You can also download the [jar file for Linux](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.10/avatar-0.4.10.jar) which needs an installed Java 11.
+You can also download the [jar file for Linux](https://github.com/sysbio-bioinf/avatar/releases/download/0.4.11/avatar-0.4.11.jar) which needs an installed Java 11.
 
 ## Publication Data
 
