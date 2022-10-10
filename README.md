@@ -72,4 +72,6 @@ Avatar is distributed under the Eclipse Public License v2.0.
 
 ## Cite
 
-If you are using this software please cite.... ***UPCOMING***
+If you are using this software please cite 
+
+Völkel G, Laban S, Fürstberger A, Kühlwein SD, Ikonomi N, Hoffmann TK, Brunner C, Neuberg DS, Gaidzik V, Döhner H, Kraus JM, Kestler HA. [Analysis, identification and visualization of subgroups in genomics](https://doi.org/10.1093/bib/bbaa217). Brief Bioinform (3): bbaa217, 2021. https://doi.org/10.1093/bib/bbaa217
