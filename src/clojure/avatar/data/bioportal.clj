@@ -177,7 +177,7 @@
   ^URL [study-id]
   (URL.
     (format
-      "http://download.cbioportal.org/%s.tar.gz"
+      "https://cbioportal-datahub.s3.amazonaws.com/%s.tar.gz"
       study-id)))
 
 

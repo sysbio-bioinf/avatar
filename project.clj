@@ -41,7 +41,7 @@
                  [org.apache.xmlgraphics/batik-anim "1.13"]
                  [org.apache.xmlgraphics/batik-svggen "1.13"] ; to convert fonts
                  [org.apache.xmlgraphics/xmlgraphics-commons "2.4"]
-                 [org.apache.xmlgraphics/fop "2.5" :exclusions [commons-logging]]
+                 [org.apache.xmlgraphics/fop "2.7" :exclusions [commons-logging]]
                  ; decompress tar archives
                  [org.apache.commons/commons-compress "1.13"]
                  [commons-io "2.4"]
