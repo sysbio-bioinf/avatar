@@ -73,7 +73,7 @@
                                         "--add-modules" "java.xml"]}}
 
 
-  :java-cmd "/usr/bin/java11"
+  :java-cmd "/usr/bin/java"
   :jvm-opts ["--add-modules" "java.xml"]
 
   :source-paths ["src/clojure"]
