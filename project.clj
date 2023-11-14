@@ -23,7 +23,7 @@
                  [org.slf4j/slf4j-log4j12 "1.7.18"]
                  [frost "0.5.4"]
                  ; newer snappy
-                 [org.xerial.snappy/snappy-java "1.1.7.2"]
+                 [org.xerial.snappy/snappy-java "1.1.8.4"]
                  [org.uma.jmetal/jmetal-core "5.3"
                   :exclusions [org.knowm.xchart/xchart]]
                  [org.uma.jmetal/jmetal-algorithm "5.3"]
